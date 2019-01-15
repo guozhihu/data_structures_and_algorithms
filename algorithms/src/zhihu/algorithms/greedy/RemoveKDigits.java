@@ -117,7 +117,7 @@ public class RemoveKDigits {
         StringBuilder sb = new StringBuilder();
         
         for (int i = 0; i < stack.size(); i++) {
-                sb.append(stack.pop());
+                sb.append(stack.get(i));
         }
         return sb.toString().length() > 0 ? sb.toString() : "0";
     }
