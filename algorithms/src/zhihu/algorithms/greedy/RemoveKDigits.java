@@ -31,10 +31,11 @@ public class RemoveKDigits {
     
     /**
      * 算法思路：
+     * 如果当前字符长度与要移除的个数K相等，则移除K个数字后的字符串必定为“0”，下面考虑K小于字符串长度的情况
      * 取出字符串的每一个字符转化为数字
-     * 将取出的数字入栈，入栈前，如果栈元素个数大于0并且k也大于0，不断迭代栈顶元素，如果将要入栈的数字小于栈顶，则将栈顶元素踢出栈，每一次栈顶出栈，k自减1
-     * 数字入栈
-     * 将所有数字入栈后，如果k>0,则从栈顶开始踢出数字，直至踢出k个
+     * 将取出的数字入栈，入栈前，如果栈元素个数大于0，要移除的个数k此时也大于0，且栈顶元素的数值大于当前要插入栈中的数值，则将栈顶元素踢出栈，继续迭代栈，每一次栈顶出栈，k自减1
+     * 执行完上面的操作后，将数字入栈
+     * 当字符串中的所有数字入栈后，如果k>0,则从栈顶开始踢出数字，k--，直至k为0后结束该操作
      * 最后从栈底开始遍历，拼装字符串，踢出前导零后开始拼装数字
      * @param num
      * @param k
@@ -73,6 +74,50 @@ public class RemoveKDigits {
             if (!LeadingZeroFlag) {
                 sb.append(numString);
             }
+        }
+        return sb.toString().length() > 0 ? sb.toString() : "0";
+    }
+    
+    // 算法的部分优化
+    /**
+     * 算法思路：
+     * 如果当前字符长度与要移除的个数K相等，则移除K个数字后的字符串必定为“0”，下面考虑K小于字符串长度的情况
+     * 取出字符串的每一个字符转化为数字
+     * 将取出的数字入栈，入栈前，如果栈元素个数大于0，要移除的个数k此时也大于0，且栈顶元素的数值大于当前要插入栈中的数值，则将栈顶元素踢出栈，继续迭代栈，每一次栈顶出栈，k自减1
+     * 执行完上面的操作后，将数字入栈，入栈前，判断当前栈元素个数是否==0并且要入栈的数值是否为0，如果是则不入栈（这样在下面进行字符串拼装的时候就不用考虑会存在前导0的情况）
+     * 当字符串中的所有数字入栈后，如果k>0,则从栈顶开始踢出数字，k--，直至k为0后结束该操作
+     * 最后从栈底开始遍历，拼装字符串
+     * @param num
+     * @param k
+     * @return
+     */
+    public static String removeKdigits_optimization(String num, int k) {
+        // 如果字符串长度==移除的个数k，则直接返回“0”字符串
+        if (num.length() == k) {
+            return "0";
+        }
+        
+        Stack<Integer> stack = new Stack<Integer>();
+        for (int i = 0; i < num.length(); i++) {
+            int number = num.charAt(i) - '0';
+            // 入栈前迭代栈顶元素，判断栈顶元素是否大于当前的字符数值，如果是，剔除该栈顶元素
+            while (stack.size() > 0 && k > 0 && number < stack.peek()) {
+                stack.pop();
+                k--;
+            }
+            // 在入栈过程中进行部分代码优化(!(0 == stack.size() && (0 == number))
+            if (0 != stack.size() || 0 != number) {
+                stack.push(number);
+            }
+        }
+        // num字符串的每个字符都入栈后，k仍然大于0，则从栈顶开始踢出元素，直至k为0
+        while (k-- > 0 && stack.size() > 0) {
+            stack.pop();
+        }
+        StringBuilder sb = new StringBuilder();
+        
+        for (int i = 0; i < stack.size(); i++) {
+                sb.append(stack.pop());
         }
         return sb.toString().length() > 0 ? sb.toString() : "0";
     }
