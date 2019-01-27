@@ -2,7 +2,9 @@ package zhihu.datastructures.union_find;
 
 /**
  * Author: zhihu
- * Description:
+ * Description: 并查集的简单实现-基于对应元素所在根的集合的树的层数进行优化和路径压缩,实现了Quick Find和Quick Union
+ * Quick Find的时间复杂度为O(h),h为树的高度
+ * Quick Union的时间复杂度为O(h),h为树的高度
  * Date: Create in 2019/1/27 23:30
  */
 public class UnionFind_5_PathCompression implements IUnionFind {
