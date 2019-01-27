@@ -43,7 +43,8 @@ public class UnionFind_3_SizeOptimization implements IUnionFind {
         return element;
     }
     
-    
+    // 合并元素element1和元素element2所属的集合
+    // O(h)复杂度, h为树的高度
     @Override
     public void union(int element1, int element2) {
         int element1Root = find(element1);
