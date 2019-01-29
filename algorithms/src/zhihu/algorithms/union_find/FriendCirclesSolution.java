@@ -124,4 +124,11 @@ public class FriendCirclesSolution {
             set.add(uf.find(i));
         return set.size();
     }
+    
+    public static void main(String[] args) {
+        int[][] M = {{1, 1, 0}, {1, 1, 0}, {0, 0, 1}};
+        int[][] M1 = {{1, 1, 0}, {1, 1, 1}, {0, 1, 1}};
+        System.out.println(new FriendCirclesSolution().findCircleNum(M));
+        System.out.println(new FriendCirclesSolution().findCircleNum(M1));
+    }
 }
