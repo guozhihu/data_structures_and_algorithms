@@ -5,7 +5,7 @@ package zhihu.algorithms.sort;
  * Description: 插入排序
  * Date: Create in 2019/2/18 16:02
  */
-public class insertionSort {
+public class InsertionSort {
     
     public static void insertionSort(int[] arr) {
         /**
