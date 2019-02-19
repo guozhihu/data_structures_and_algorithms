@@ -129,7 +129,7 @@ public class BST<E extends Comparable<E>> {
     }
     
     // 二分搜索树的非递归中序遍历
-    public void inOrderNR(){
+    public void inOrderNR() {
         if (null != root) {
             Stack<Node> stack = new Stack<>();
             Node cur = root;
