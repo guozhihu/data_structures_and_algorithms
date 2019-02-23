@@ -21,9 +21,9 @@ public class Array<E> {
     }
     
     // 传入数组的内容进行构造
-    public Array(E[] arr){
-        data = (E[])new Object[arr.length];
-        for(int i = 0 ; i < arr.length ; i ++)
+    public Array(E[] arr) {
+        data = (E[]) new Object[arr.length];
+        for (int i = 0; i < arr.length; i++)
             data[i] = arr[i];
         size = arr.length;
     }
@@ -133,6 +133,17 @@ public class Array<E> {
         int index = find(e);
         if (index != -1)
             remove(index);
+    }
+    
+    // 数组位置交换
+    public void swap(int i, int j) {
+        
+        if (i < 0 || i >= size || j < 0 || j >= size)
+            throw new IllegalArgumentException("Index is illegal.");
+        
+        E t = data[i];
+        data[i] = data[j];
+        data[j] = t;
     }
     
     @Override
