@@ -47,6 +47,7 @@ public class ValidParentheses {
      *       判断栈stack中元素是否为空，为空表示字符串第一个元素为右半边括号中的一种，没有相应的左半边括号，返回false
      *       如果栈stack中元素不为空，则弹出栈顶元素，如果弹出的栈顶元素topChar与c不匹配，返回false
      * 如果字符串为null或者只存在右半边括号，即s.isEmpty()为true，返回false;
+     *
      * @param s
      * @return
      */
