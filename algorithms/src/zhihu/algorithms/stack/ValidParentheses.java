@@ -39,6 +39,17 @@ import java.util.Stack;
  */
 public class ValidParentheses {
     
+    /**
+     * 算法思路：
+     * 遍历字符串s中的每个字符c
+     *    如果c为左半边括号(指'('或者'{'或者'['中的一种)，将其压入栈stack中
+     *    如果c为右半边括号(指')'或者'}'或者']'中的一种)
+     *       判断栈stack中元素是否为空，为空表示字符串第一个元素为右半边括号中的一种，没有相应的左半边括号，返回false
+     *       如果栈stack中元素不为空，则弹出栈顶元素，如果弹出的栈顶元素topChar与c不匹配，返回false
+     * 如果字符串为null或者只存在右半边括号，即s.isEmpty()为true，返回false;
+     * @param s
+     * @return
+     */
     public static boolean isValid(String s) {
         Stack<Character> stack = new Stack<Character>();
         for (int i = 0; i < s.length(); i++) {
@@ -55,6 +66,7 @@ public class ValidParentheses {
                 }
             }
         }
+        // 如果字符串中只存在右半边括号，返回false;
         return stack.isEmpty();
     }
     
