@@ -17,7 +17,7 @@ public class MaxHeap<E extends Comparable<E>> {
     public MaxHeap() {
         data = new Array<>();
     }
-    
+    // 这里采用heapify将一个数组转换成最大堆，算法复杂度为O(n),如果采用将数组中的元素依次添加到一个空堆中，其算法复杂度为O(nlogn)
     public MaxHeap(E[] arr) {
         data = new Array<>(arr);
         for (int i = parent(arr.length - 1); i >= 0; i--)
