@@ -1,4 +1,4 @@
-package zhihu.algorithms.queue;
+package zhihu.algorithms.heap;
 
 import java.util.*;
 
