@@ -17,6 +17,19 @@ package zhihu.algorithms.recursion_backtracking_divide_and_conquer;
  */
 public class PathInTheMatrix {
     
+    /**
+     * 算法思路：
+     * 这里采用回溯算法
+     * 从当前位置(i,j)(i,j从(0,0)开始)出发匹配字符串，并设置当前位置为已匹配状态，
+     *    如果匹配成功，从当前位置分别从上下左右四个方向继续匹配下一个字符，直到匹配完字符串，
+     * 匹配过程中如果发现不匹配，则回到上一次的位置，并设置该位置为未访问状态，还需注意当前访问的位置是否越界。
+     *
+     * @param matrix
+     * @param rows
+     * @param cols
+     * @param str
+     * @return
+     */
     public static boolean hasPath(char[] matrix, int rows, int cols, char[] str) {
         if (null == matrix || matrix.length != rows * cols || null == str) {
             return false;
@@ -46,20 +59,24 @@ public class PathInTheMatrix {
         }
         visited[i * cols + j] = true;
         
+        // 如果当前位置匹配成功，则继续从相邻格子匹配下一个字符
         boolean res = hasPathCore(matrix, rows, cols, i + 1, j, str, index + 1, visited)
             || hasPathCore(matrix, rows, cols, i - 1, j, str, index + 1, visited)
             || hasPathCore(matrix, rows, cols, i, j + 1, str, index + 1, visited)
             || hasPathCore(matrix, rows, cols, i, j - 1, str, index + 1, visited);
-        //如果相邻格子的字符都没有匹配到下一个字符，则需要回到前一个格子，从而需要把把位置的状态重新设定为未访问
+        
         if (res) {
             return true;
         } else {
+            //如果相邻格子的字符都没有匹配到下一个字符，则需要回到前一个格子，从而需要把位置的状态重新设定为未访问
             visited[i * cols + j] = false;
         }
         return false;
     }
     
-    // 矩阵matrix中的(i,j)位置是否越界并且是否是c字符
+    // 判断当前位置是否合法，即判断是否满足下列两个要求
+    //  1.矩阵matrix中的(i,j)位置是否越界
+    //  2.矩阵matrix中的(i,j)位置是否是c字符
     private static boolean match(char[] matrix, int rows, int cols, int i, int j, char c) {
         // 判断是否越界
         if (i < 0 || i > rows - 1 || j < 0 || j > cols - 1) {
