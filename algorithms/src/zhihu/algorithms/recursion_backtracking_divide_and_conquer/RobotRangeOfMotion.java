@@ -20,7 +20,7 @@ public class RobotRangeOfMotion {
      * (i,j)的行坐标和列坐标的数位之和是否大于k
      * 如果机器人能进入(i,j)的格子，接着在判断它是否能进入四个相邻的格子(i,j-1),(i,j+1),(i-1,j),(i+1,j)。
      * 因此，可以用回溯法来解决这一问题。
-     * @param threshold
+     * @param threshold等价于k
      * @param rows
      * @param cols
      * @return
