@@ -45,11 +45,12 @@ public class PathInTheMatrix {
             return false;
         }
         visited[i * cols + j] = true;
-        //如果相邻格子的字符都没有匹配到下一个字符，则需要回到前一个格子，从而需要把把位置的状态重新设定为未访问
+        
         boolean res = hasPathCore(matrix, rows, cols, i + 1, j, str, index + 1, visited)
             || hasPathCore(matrix, rows, cols, i - 1, j, str, index + 1, visited)
             || hasPathCore(matrix, rows, cols, i, j + 1, str, index + 1, visited)
             || hasPathCore(matrix, rows, cols, i, j - 1, str, index + 1, visited);
+        //如果相邻格子的字符都没有匹配到下一个字符，则需要回到前一个格子，从而需要把把位置的状态重新设定为未访问
         if (res) {
             return true;
         } else {
