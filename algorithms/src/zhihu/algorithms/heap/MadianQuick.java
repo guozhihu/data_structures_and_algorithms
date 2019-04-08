@@ -18,14 +18,30 @@ import java.util.PriorityQueue;
  */
 public class MadianQuick {
     
+    /**
+     * 算法思路：
+     * 1.创建一个最大堆和一个最小堆，最大堆保存的数据都小于最小堆保存的数据，这样即使最大堆、最小堆两边内部的数据没有排序，
+     * 也可以根据最大堆最大的数及最小堆最小的数得到中位数。
+     * 2.当插入一个新数据时
+     *    如果当前最大堆为空，将要插入的数据插入最大堆中
+     *    如果最大堆非空并且要插入的数据小于最大堆的堆顶元素，则插入最大堆中，反之插入最小堆中
+     *    每插入一个新的数据，都要判断最大堆中的元素个数和最小堆中的元素个数是否不均匀
+     *        如果最大堆中的元素个数 == 最小堆中的元素个数 + 2，则弹出最大堆的堆顶元素并将其插入最小堆中
+     *        如果最小堆中的元素个数 == 最大堆中的元素个数 + 2，则弹出最小堆的堆顶元素并将其插入最大堆中
+     * 3.计算中位数
+     * 如果最大堆的元素个数 == 最小堆的元素个数，则返回最大堆的堆顶元素与最小堆的堆顶元素的和 / 2即可
+     * 如果最大堆的元素个数 > 最小堆的元素个数，则返回最大堆的堆顶元素即可
+     * 如果最小堆的元素个数 > 最大堆的元素个数，则返回最小堆的堆顶元素即可
+     */
     public static class MedianHolder {
         // 最大堆
-        private PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o2 - o1;
-            }
-        });
+//        private PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(new Comparator<Integer>() {
+//            @Override
+//            public int compare(Integer o1, Integer o2) {
+//                return o2 - o1;
+//            }
+//        });
+        private PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>((o1, o2) -> o2 - o1);
         // 最小堆,默认就是最小堆
         private PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
         
