@@ -4,7 +4,7 @@ import zhihu.datastructures.array.Array;
 
 /**
  * Author: zhihu
- * Description: 二叉堆实现(最大堆)
+ * Description: 二叉堆实现-最大堆
  * Date: Create in 2019/2/23 23:25
  */
 public class MaxHeap<E extends Comparable<E>> {
